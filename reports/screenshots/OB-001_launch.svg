@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0e2a47"/>
+      <stop offset="100%" stop-color="#1e4d7b"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <!-- Window Background -->
+  <rect x="0" y="0" width="900" height="520" fill="#f4f6f9" rx="8"/>
+  <!-- App Header -->
+  <rect x="0" y="0" width="900" height="55" fill="url(#headerGrad)" rx="8 8 0 0"/>
+  <circle cx="25" cy="27" r="6" fill="#e74c3c"/>
+  <circle cx="45" cy="27" r="6" fill="#f1c40f"/>
+  <circle cx="65" cy="27" r="6" fill="#2ecc71"/>
+  <text x="100" y="34" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="18">OsdagBridge v1.0.0 — Steel Plate Girder Bridge Designer (IRC:24 / IS 800)</text>
+  
+  <!-- Left Sidebar -->
+  <rect x="15" y="70" width="220" height="435" fill="#ffffff" rx="6" filter="url(#shadow)"/>
+  <text x="30" y="100" fill="#0e2a47" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="14">PROJECT NAVIGATOR</text>
+  <rect x="25" y="115" width="200" height="36" fill="#e8f0fe" rx="4"/>
+  <text x="35" y="138" fill="#1a73e8" font-family="Segoe UI, sans-serif" font-size="13" font-weight="bold">📁 Project Setup</text>
+  <text x="35" y="172" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="13">📐 Bridge Geometry</text>
+  <text x="35" y="206" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="13">🔩 Girder Cross-Section</text>
+  <text x="35" y="240" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="13">🚛 IRC Vehicle Loads</text>
+  <text x="35" y="274" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="13">⚡ Analysis & Solver</text>
+  <text x="35" y="308" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="13">📊 Design Verification</text>
+  <text x="35" y="342" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="13">📄 Report Generation</text>
+
+  <!-- Main Canvas -->
+  <rect x="250" y="70" width="635" height="435" fill="#ffffff" rx="6" filter="url(#shadow)"/>
+  <text x="275" y="105" fill="#202124" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="20">Plate Girder Bridge - Project Overview</text>
+  
+  <rect x="275" y="125" width="280" height="85" fill="#f8f9fa" stroke="#dadce0" rx="4"/>
+  <text x="290" y="150" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="12">STATUS</text>
+  <text x="290" y="185" fill="#137333" font-family="Segoe UI, sans-serif" font-size="20" font-weight="bold">● READY FOR INPUT</text>
+
+  <rect x="580" y="125" width="285" height="85" fill="#f8f9fa" stroke="#dadce0" rx="4"/>
+  <text x="595" y="150" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="12">ACTIVE STANDARD</text>
+  <text x="595" y="185" fill="#1a73e8" font-family="Segoe UI, sans-serif" font-size="18" font-weight="bold">IRC:24-2010 / IS 800</text>
+
+  <!-- Girder Diagram Preview -->
+  <rect x="275" y="230" width="590" height="255" fill="#fbfcfe" stroke="#e0e0e0" rx="4"/>
+  <text x="295" y="255" fill="#3c4043" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="14">Cross-Section Graphic View (I-Girder Assembly)</text>
+  <!-- Top Flange -->
+  <rect x="470" y="280" width="200" height="18" fill="#1e4d7b" stroke="#0e2a47"/>
+  <!-- Web -->
+  <rect x="564" y="298" width="12" height="120" fill="#4682b4" stroke="#1e4d7b"/>
+  <!-- Bottom Flange -->
+  <rect x="470" y="418" width="200" height="18" fill="#1e4d7b" stroke="#0e2a47"/>
+  <!-- Stiffener ribs -->
+  <line x1="510" y1="298" x2="510" y2="418" stroke="#f39c12" stroke-width="3" stroke-dasharray="4"/>
+  <line x1="630" y1="298" x2="630" y2="418" stroke="#f39c12" stroke-width="3" stroke-dasharray="4"/>
+  
+  <text x="680" y="295" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="12">Top Flange (500x36mm)</text>
+  <text x="590" y="365" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="12">Web (1800x14mm)</text>
+  <text x="680" y="432" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="12">Bottom Flange (500x36mm)</text>
+</svg>

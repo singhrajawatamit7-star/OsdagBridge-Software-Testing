@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="100%" height="100%">
+  <rect x="0" y="0" width="900" height="520" fill="#f4f6f9" rx="8"/>
+  <rect x="0" y="0" width="900" height="55" fill="#0e2a47" rx="8 8 0 0"/>
+  <text x="30" y="34" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="18">OsdagBridge - Export PDF Dialog (Defect OB-BUG-004 Evidence)</text>
+
+  <!-- Modal Box -->
+  <g transform="translate(150, 100)">
+    <rect width="600" height="320" fill="#ffffff" stroke="#ced4da" rx="8" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.2))"/>
+    <rect width="600" height="45" fill="#f8f9fa" rx="8 8 0 0" stroke="#ced4da"/>
+    <text x="25" y="28" fill="#212529" font-family="Segoe UI, sans-serif" font-size="15" font-weight="bold">Save Design Report As...</text>
+    
+    <text x="35" y="85" fill="#495057" font-family="Segoe UI, sans-serif" font-size="13">Export Destination Path:</text>
+    <rect x="35" y="95" width="530" height="38" fill="#fff3cd" stroke="#ffeeba" rx="4"/>
+    <text x="45" y="120" fill="#856404" font-family="Consolas, monospace" font-size="13">C:\Bridge_Designs\डिजाइन_2026\NH48_Report.pdf</text>
+    
+    <rect x="35" y="150" width="530" height="80" fill="#fce8e6" stroke="#f5c6cb" rx="4"/>
+    <text x="50" y="175" fill="#721c24" font-family="Segoe UI, sans-serif" font-size="13" font-weight="bold">⚠️ Silent Failure Observed:</text>
+    <text x="50" y="195" fill="#721c24" font-family="Segoe UI, sans-serif" font-size="12">File path contains non-ASCII Unicode characters ('डिजाइन').</text>
+    <text x="50" y="215" fill="#721c24" font-family="Segoe UI, sans-serif" font-size="12">File write failed without raising an alert to the user interface (OB-BUG-004).</text>
+
+    <rect x="440" y="255" width="125" height="36" fill="#6c757d" rx="4"/>
+    <text x="480" y="278" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="13">Cancel</text>
+  </g>
+</svg>

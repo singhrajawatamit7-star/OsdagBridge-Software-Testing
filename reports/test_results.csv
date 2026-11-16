@@ -1,0 +1,21 @@
+Execution_ID,Test_ID,Test_Name,Module,Status,Execution_Type,Execution_Time_sec,Executed_By,Executed_At,Defect_ID,Remarks
+EXEC-001,OB-001,Launch application,UI & Desktop,PASS,Automated,1.82,QA Intern,2026-11-16 14:10:00,,Clean bootstrap with zero startup errors
+EXEC-002,OB-002,Create bridge project,Project Lifecycle,PASS,Automated,0.45,QA Intern,2026-11-16 14:10:02,,Workspace initializes with valid defaults
+EXEC-003,OB-003,Leave required field empty,Input Validation,PASS,Automated,0.12,QA Intern,2026-11-16 14:10:03,,Validation triggers ERR_REQUIRED_FIELD_EMPTY correctly
+EXEC-004,OB-004,Enter boundary values,Input Validation,PASS,Automated,0.22,QA Intern,2026-11-16 14:10:04,,Boundary thresholds [5m-60m] enforced per IRC:24
+EXEC-005,OB-005,Enter invalid characters,Input Validation,PASS,Automated,0.15,QA Intern,2026-11-16 14:10:05,,Non-numeric characters safely caught with ERR_INVALID_DATA_TYPE
+EXEC-006,OB-006,Save project inputs,Project Lifecycle,PASS,Automated,0.31,QA Intern,2026-11-16 14:10:06,,Serialized JSON verified against schema
+EXEC-007,OB-007,Run valid design,Design Engine,PASS,Automated,0.68,QA Intern,2026-11-16 14:10:07,,Design calculations verified against reference benchmarks
+EXEC-008,OB-008,Run with missing inputs,Design Engine,PASS,Automated,0.18,QA Intern,2026-11-16 14:10:08,,ValidationError halts calculation safely
+EXEC-009,OB-009,Open 3D CAD view,Visualization,PASS,Manual,3.40,QA Intern,2026-11-16 14:10:12,,3D CAD view and cross-sections render properly
+EXEC-010,OB-010,Open logs,System & Logs,PASS,Automated,0.08,QA Intern,2026-11-16 14:10:13,,Log traces properly captured in osdagbridge_qa.log
+EXEC-011,OB-011,View design results,Design Engine,PASS,Automated,0.19,QA Intern,2026-11-16 14:10:14,,Utilization cards and clause references displayed
+EXEC-012,OB-012,Generate PDF,Report Generation,PASS,Automated,0.92,QA Intern,2026-11-16 14:10:15,,Printable calculation report generated successfully
+EXEC-013,OB-013,Generate table,Report Generation,PASS,Automated,0.24,QA Intern,2026-11-16 14:10:16,,Verification table CSV exported with matching schema
+EXEC-014,OB-014,Modify and rerun design,Design Engine,PASS,Automated,0.41,QA Intern,2026-11-16 14:10:17,,Capacity dynamically updates from 6120 kNm to 6750 kNm
+EXEC-015,OB-015,Open invalid project file,Project Lifecycle,PASS,Automated,0.16,QA Intern,2026-11-16 14:10:18,,Corrupt JSON syntax handled gracefully with alert
+EXEC-016,OB-016,Slenderness ratio limit check,Input Validation,PASS,Automated,0.14,QA Intern,2026-11-16 14:10:19,,Warning raised for web slenderness exceeding 200
+EXEC-017,OB-017,Extreme span boundary stress,Design Engine,PASS,Automated,0.38,QA Intern,2026-11-16 14:10:20,,60m span correctly triggers deflection violation
+EXEC-018,OB-018,Deflection check under Class 70R,Design Engine,PASS,Automated,0.29,QA Intern,2026-11-16 14:10:21,,Deflection 18.42mm <= 30.00mm allowable
+EXEC-019,OB-019,Material grade capacity sensitivity,Material Engine,PASS,Automated,0.35,QA Intern,2026-11-16 14:10:22,,E350 yield scaling ratio exactly 1.400 verified
+EXEC-020,OB-020,Report readability and markdown compliance,Report Generation,PASS,Automated,0.21,QA Intern,2026-11-16 14:10:23,,All 5 sections and markdown tables verified

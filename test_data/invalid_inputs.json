@@ -1,0 +1,174 @@
+{
+  "test_cases": [
+    {
+      "case_id": "NEG-001-NEGATIVE-SPAN",
+      "description": "Span length entered as negative value (-24.0 m)",
+      "expected_error_code": "ERR_NEGATIVE_OR_ZERO_INPUT",
+      "payload": {
+        "project_id": "OB-ERR-001",
+        "project_name": "Negative Span Test",
+        "location": "Test Lab",
+        "engineer_name": "QA Intern",
+        "bridge_type": "Plate_Girder_Bridge",
+        "steel_grade": "E250",
+        "concrete_grade": "M30",
+        "vehicle_loading": "IRC_Class_70R_Tracked",
+        "geometry": {
+          "span_length": -24.0,
+          "carriageway_width": 7.5,
+          "footpath_width_left": 1.0,
+          "footpath_width_right": 1.0,
+          "number_of_main_girders": 3,
+          "girder_spacing": 2.5,
+          "cross_girder_spacing": 4.0,
+          "deck_slab_thickness": 200.0,
+          "wearing_coat_thickness": 50.0
+        },
+        "girder_dimensions": {
+          "web_depth": 1600.0,
+          "web_thickness": 12.0,
+          "flange_width": 450.0,
+          "flange_thickness": 32.0,
+          "stiffener_spacing": 1500.0,
+          "stiffener_thickness": 10.0
+        }
+      }
+    },
+    {
+      "case_id": "NEG-002-NON-NUMERIC-INPUT",
+      "description": "Alphabetic characters injected into numeric web depth field",
+      "expected_error_code": "ERR_INVALID_DATA_TYPE",
+      "payload": {
+        "project_id": "OB-ERR-002",
+        "project_name": "Alpha Characters Test",
+        "location": "Test Lab",
+        "engineer_name": "QA Intern",
+        "bridge_type": "Plate_Girder_Bridge",
+        "steel_grade": "E250",
+        "concrete_grade": "M30",
+        "vehicle_loading": "IRC_Class_70R_Tracked",
+        "geometry": {
+          "span_length": 20.0,
+          "carriageway_width": 7.5,
+          "footpath_width_left": 1.0,
+          "footpath_width_right": 1.0,
+          "number_of_main_girders": 2,
+          "girder_spacing": 3.0,
+          "cross_girder_spacing": 5.0,
+          "deck_slab_thickness": 200.0,
+          "wearing_coat_thickness": 50.0
+        },
+        "girder_dimensions": {
+          "web_depth": "ABC123DEPTH",
+          "web_thickness": 12.0,
+          "flange_width": 450.0,
+          "flange_thickness": 32.0,
+          "stiffener_spacing": 1500.0,
+          "stiffener_thickness": 10.0
+        }
+      }
+    },
+    {
+      "case_id": "NEG-003-MISSING-PROJECT-NAME",
+      "description": "Required project_name left empty/blank",
+      "expected_error_code": "ERR_REQUIRED_FIELD_EMPTY",
+      "payload": {
+        "project_id": "OB-ERR-003",
+        "project_name": "",
+        "location": "Test Lab",
+        "engineer_name": "QA Intern",
+        "bridge_type": "Plate_Girder_Bridge",
+        "steel_grade": "E250",
+        "concrete_grade": "M30",
+        "vehicle_loading": "IRC_Class_70R_Tracked",
+        "geometry": {
+          "span_length": 20.0,
+          "carriageway_width": 7.5,
+          "footpath_width_left": 1.0,
+          "footpath_width_right": 1.0,
+          "number_of_main_girders": 2,
+          "girder_spacing": 3.0,
+          "cross_girder_spacing": 5.0,
+          "deck_slab_thickness": 200.0,
+          "wearing_coat_thickness": 50.0
+        },
+        "girder_dimensions": {
+          "web_depth": 1500.0,
+          "web_thickness": 12.0,
+          "flange_width": 400.0,
+          "flange_thickness": 25.0,
+          "stiffener_spacing": 1500.0,
+          "stiffener_thickness": 10.0
+        }
+      }
+    },
+    {
+      "case_id": "NEG-004-CORROSION-THICKNESS-VIOLATION",
+      "description": "Web thickness below IRC:24 corrosion limit of 8.0 mm",
+      "expected_error_code": "ERR_BELOW_MIN_LIMIT",
+      "payload": {
+        "project_id": "OB-ERR-004",
+        "project_name": "Sub-minimum Web Thickness",
+        "location": "Test Lab",
+        "engineer_name": "QA Intern",
+        "bridge_type": "Plate_Girder_Bridge",
+        "steel_grade": "E250",
+        "concrete_grade": "M30",
+        "vehicle_loading": "IRC_Class_70R_Tracked",
+        "geometry": {
+          "span_length": 18.0,
+          "carriageway_width": 7.5,
+          "footpath_width_left": 1.0,
+          "footpath_width_right": 1.0,
+          "number_of_main_girders": 2,
+          "girder_spacing": 3.0,
+          "cross_girder_spacing": 4.5,
+          "deck_slab_thickness": 200.0,
+          "wearing_coat_thickness": 50.0
+        },
+        "girder_dimensions": {
+          "web_depth": 1400.0,
+          "web_thickness": 4.5,
+          "flange_width": 400.0,
+          "flange_thickness": 25.0,
+          "stiffener_spacing": 1500.0,
+          "stiffener_thickness": 10.0
+        }
+      }
+    },
+    {
+      "case_id": "NEG-005-UNSUPPORTED-STEEL-GRADE",
+      "description": "Unsupported steel grade entered (e.g. MildSteel_A36)",
+      "expected_error_code": "ERR_INVALID_STEEL_GRADE",
+      "payload": {
+        "project_id": "OB-ERR-005",
+        "project_name": "Invalid Material Grade Test",
+        "location": "Test Lab",
+        "engineer_name": "QA Intern",
+        "bridge_type": "Plate_Girder_Bridge",
+        "steel_grade": "A36_UNSUPPORTED",
+        "concrete_grade": "M30",
+        "vehicle_loading": "IRC_Class_70R_Tracked",
+        "geometry": {
+          "span_length": 18.0,
+          "carriageway_width": 7.5,
+          "footpath_width_left": 1.0,
+          "footpath_width_right": 1.0,
+          "number_of_main_girders": 2,
+          "girder_spacing": 3.0,
+          "cross_girder_spacing": 4.5,
+          "deck_slab_thickness": 200.0,
+          "wearing_coat_thickness": 50.0
+        },
+        "girder_dimensions": {
+          "web_depth": 1400.0,
+          "web_thickness": 12.0,
+          "flange_width": 400.0,
+          "flange_thickness": 25.0,
+          "stiffener_spacing": 1500.0,
+          "stiffener_thickness": 10.0
+        }
+      }
+    }
+  ]
+}

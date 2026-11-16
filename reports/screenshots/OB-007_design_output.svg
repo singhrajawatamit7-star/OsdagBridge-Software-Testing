@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="100%" height="100%">
+  <defs>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="900" height="520" fill="#f4f6f9" rx="8"/>
+  <rect x="0" y="0" width="900" height="55" fill="#0e2a47" rx="8 8 0 0"/>
+  <text x="30" y="35" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="18">OsdagBridge - Design Verification Summary (OB-PROJ-001)</text>
+
+  <!-- Big Green Status Badge -->
+  <rect x="30" y="70" width="840" height="50" fill="#e6f4ea" stroke="#137333" stroke-width="1.5" rx="4"/>
+  <text x="50" y="102" fill="#137333" font-family="Segoe UI, sans-serif" font-size="16" font-weight="bold">✅ STRUCTURAL CHECKS PASSED — Bridge Section Compliant with IRC:24 &amp; IS 800:2007</text>
+
+  <!-- 4 Metric Cards -->
+  <!-- Card 1: Moment -->
+  <g transform="translate(30, 135)">
+    <rect width="195" height="150" fill="#ffffff" rx="6" filter="url(#cardShadow)"/>
+    <text x="15" y="30" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="13">Bending Moment</text>
+    <text x="15" y="65" fill="#1e4d7b" font-family="Segoe UI, sans-serif" font-size="20" font-weight="bold">4,520 kNm</text>
+    <text x="15" y="90" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="11">Capacity: 6,120 kNm</text>
+    <rect x="15" y="105" width="165" height="10" fill="#e8eaed" rx="5"/>
+    <rect x="15" y="105" width="122" height="10" fill="#188038" rx="5"/>
+    <text x="15" y="132" fill="#137333" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold">Ratio: 0.738 (PASS)</text>
+  </g>
+
+  <!-- Card 2: Shear -->
+  <g transform="translate(245, 135)">
+    <rect width="195" height="150" fill="#ffffff" rx="6" filter="url(#cardShadow)"/>
+    <text x="15" y="30" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="13">Shear Force</text>
+    <text x="15" y="65" fill="#1e4d7b" font-family="Segoe UI, sans-serif" font-size="20" font-weight="bold">1,841 kN</text>
+    <text x="15" y="90" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="11">Capacity: 3,637 kN</text>
+    <rect x="15" y="105" width="165" height="10" fill="#e8eaed" rx="5"/>
+    <rect x="15" y="105" width="84" height="10" fill="#188038" rx="5"/>
+    <text x="15" y="132" fill="#137333" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold">Ratio: 0.506 (PASS)</text>
+  </g>
+
+  <!-- Card 3: Deflection -->
+  <g transform="translate(460, 135)">
+    <rect width="195" height="150" fill="#ffffff" rx="6" filter="url(#cardShadow)"/>
+    <text x="15" y="30" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="13">LL Deflection</text>
+    <text x="15" y="65" fill="#1e4d7b" font-family="Segoe UI, sans-serif" font-size="20" font-weight="bold">18.42 mm</text>
+    <text x="15" y="90" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="11">Allowable (L/800): 30.0 mm</text>
+    <rect x="15" y="105" width="165" height="10" fill="#e8eaed" rx="5"/>
+    <rect x="15" y="105" width="101" height="10" fill="#188038" rx="5"/>
+    <text x="15" y="132" fill="#137333" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold">Ratio: 0.614 (PASS)</text>
+  </g>
+
+  <!-- Card 4: Web Slenderness -->
+  <g transform="translate(675, 135)">
+    <rect width="195" height="150" fill="#ffffff" rx="6" filter="url(#cardShadow)"/>
+    <text x="15" y="30" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="13">Web Slenderness</text>
+    <text x="15" y="65" fill="#1e4d7b" font-family="Segoe UI, sans-serif" font-size="20" font-weight="bold">d/tw = 128.6</text>
+    <text x="15" y="90" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="11">IS 800 Limit: 200.0</text>
+    <rect x="15" y="105" width="165" height="10" fill="#e8eaed" rx="5"/>
+    <rect x="15" y="105" width="106" height="10" fill="#188038" rx="5"/>
+    <text x="15" y="132" fill="#137333" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold">Ratio: 0.643 (PASS)</text>
+  </g>
+
+  <!-- Verification Table below -->
+  <rect x="30" y="305" width="840" height="190" fill="#ffffff" rx="6" filter="url(#cardShadow)"/>
+  <text x="50" y="335" fill="#202124" font-family="Segoe UI, sans-serif" font-size="16" font-weight="bold">Code Compliance Reference Matrix</text>
+  <line x1="50" y1="350" x2="850" y2="350" stroke="#dadce0"/>
+  <text x="50" y="375" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="13">Bending Moment Capacity Check (IS 800 Cl 8.2.1.2) — Required: 4520.12 kNm | Provided: 6120.45 kNm</text>
+  <text x="780" y="375" fill="#137333" font-family="Segoe UI, sans-serif" font-size="13" font-weight="bold">[PASS]</text>
+  <text x="50" y="410" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="13">Shear Force Capacity Check (IS 800 Cl 8.4.1) — Required: 1840.50 kN | Provided: 3637.24 kN</text>
+  <text x="780" y="410" fill="#137333" font-family="Segoe UI, sans-serif" font-size="13" font-weight="bold">[PASS]</text>
+  <text x="50" y="445" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="13">Live Load Deflection Check (IRC:24 Cl 505) — Actual: 18.42 mm | Allowable: 30.00 mm</text>
+  <text x="780" y="445" fill="#137333" font-family="Segoe UI, sans-serif" font-size="13" font-weight="bold">[PASS]</text>
+  <text x="50" y="480" fill="#5f6368" font-family="Segoe UI, sans-serif" font-size="13">Web Buckling / Slenderness Check (IS 800 Cl 8.6.1.1) — d/tw = 128.6 &lt; 200.0</text>
+  <text x="780" y="480" fill="#137333" font-family="Segoe UI, sans-serif" font-size="13" font-weight="bold">[PASS]</text>
+</svg>

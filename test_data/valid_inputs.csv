@@ -1,0 +1,6 @@
+scenario_id,span_length,carriageway_width,number_of_main_girders,web_depth,web_thickness,flange_width,flange_thickness,steel_grade,concrete_grade,vehicle_loading,expected_status
+VAL_01_TWO_LANE_24M,24.0,7.5,3,1800.0,14.0,500.0,36.0,E250,M35,IRC_Class_70R_Tracked,SAFE
+VAL_02_SINGLE_LANE_16M,16.0,4.25,2,1400.0,12.0,400.0,28.0,E250,M30,IRC_Class_A,SAFE
+VAL_03_HEAVY_30M_E350,30.0,7.5,4,2200.0,16.0,600.0,45.0,E350,M40,IRC_Class_70R_Tracked,SAFE
+VAL_04_SHORT_SPAN_12M,12.0,7.5,2,1100.0,10.0,350.0,22.0,E250,M25,IRC_Class_A,SAFE
+VAL_05_HIGH_STRENGTH_E410,20.0,7.5,3,1600.0,12.0,450.0,30.0,E410,M35,IRC_Class_70R_Wheeled,SAFE

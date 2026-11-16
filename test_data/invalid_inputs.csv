@@ -1,0 +1,9 @@
+scenario_id,input_field,invalid_value,reason,expected_error_code
+INV_01_SPAN_NEGATIVE,span_length,-15.0,Span cannot be negative,ERR_NEGATIVE_OR_ZERO_INPUT
+INV_02_SPAN_EXCESSIVE,span_length,75.0,Span exceeds max 60m for plate girders,ERR_EXCEEDS_MAX_LIMIT
+INV_03_WEB_TOO_THIN,web_thickness,5.0,Web thickness below 8mm corrosion threshold,ERR_BELOW_MIN_LIMIT
+INV_04_ALPHA_IN_NUMERIC,web_depth,ABC123DEPTH,Non-numeric string in numeric field,ERR_INVALID_DATA_TYPE
+INV_05_MISSING_STEEL,steel_grade,,Required material grade omitted,ERR_REQUIRED_FIELD_EMPTY
+INV_06_UNKNOWN_STEEL,steel_grade,ST-52,Unsupported steel grade identifier,ERR_INVALID_STEEL_GRADE
+INV_07_MIN_GIRDERS,number_of_main_girders,1,Plate girder bridge requires minimum 2 girders,ERR_MIN_GIRDERS_REQUIRED
+INV_08_ZERO_SPAN,span_length,0.0,Span cannot be zero,ERR_NEGATIVE_OR_ZERO_INPUT

@@ -1,0 +1,18 @@
+[2026-11-16 14:10:00.104] [INFO] [osdagbridge.desktop] Initializing OsdagBridge Application v1.0.0...
+[2026-11-16 14:10:00.320] [INFO] [osdagbridge.core] Python runtime: 3.13.7 (tags/v3.13.7) on win32
+[2026-11-16 14:10:00.412] [INFO] [osdagbridge.desktop] Loading CAD engine & graphics drivers... OK
+[2026-11-16 14:10:01.821] [INFO] [osdagbridge.desktop] Main window rendered successfully. Ready for input.
+[2026-11-16 14:10:02.155] [INFO] [osdagbridge.project] New Project initiated: type='Plate_Girder_Bridge', ID='OB-PROJ-001'
+[2026-11-16 14:10:03.010] [WARNING] [osdagbridge.validator] Field 'project_name' is blank. Validation blocked with ERR_REQUIRED_FIELD_EMPTY.
+[2026-11-16 14:10:04.120] [INFO] [osdagbridge.validator] Boundary check: span_length=5.0m, web_thickness=8.0mm. Passed IRC:24 criteria.
+[2026-11-16 14:10:05.210] [WARNING] [osdagbridge.validator] Non-numeric input rejected on field 'web_depth': 'ABC123DEPTH' (ERR_INVALID_DATA_TYPE).
+[2026-11-16 14:10:06.012] [INFO] [osdagbridge.project] Project successfully serialized to JSON. Checksum: a8f9210e.
+[2026-11-16 14:10:07.104] [INFO] [osdagbridge.solver] Starting Plate Girder Analysis for project OB-PROJ-001...
+[2026-11-16 14:10:07.215] [INFO] [osdagbridge.solver] Effective span: 24.00m | Girder spacing: 2.80m | Girders: 3
+[2026-11-16 14:10:07.310] [INFO] [osdagbridge.solver] Self-weight dead load: 18.42 kN/m | Impact factor: 0.150
+[2026-11-16 14:10:07.450] [INFO] [osdagbridge.solver] Design Moment Md_req: 4,520.12 kNm | Capacity Md: 6,120.45 kNm (Ratio: 0.738 - PASS)
+[2026-11-16 14:10:07.550] [INFO] [osdagbridge.solver] Design Shear Vd_req: 1,840.50 kN | Capacity Vd: 3,637.24 kN (Ratio: 0.506 - PASS)
+[2026-11-16 14:10:07.670] [INFO] [osdagbridge.solver] Live Load Deflection: 18.42 mm | Limit: 30.00 mm (Ratio: 0.614 - PASS)
+[2026-11-16 14:10:07.780] [INFO] [osdagbridge.solver] Overall Structural Safety Assessment: SAFE.
+[2026-11-16 14:10:15.110] [INFO] [osdagbridge.report] Generated calculation report in HTML/PDF format: 4 sections, 4 checks.
+[2026-11-16 14:10:23.500] [INFO] [osdagbridge.qa] Automated QA test batch completed: 20 executed, 20 passed, 0 failed.

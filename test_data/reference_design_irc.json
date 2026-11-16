@@ -1,0 +1,22 @@
+{
+  "benchmark_id": "IRC-REF-PG-24M",
+  "source": "IRC:24-2010 Example 4.1 Plate Girder Highway Bridge",
+  "project_params": {
+    "span_length": 24.0,
+    "carriageway_width": 7.5,
+    "girders": 3,
+    "steel_grade": "E250",
+    "web_depth": 1800.0,
+    "web_thickness": 14.0,
+    "flange_width": 500.0,
+    "flange_thickness": 36.0
+  },
+  "expected_engineering_tolerances": {
+    "moment_capacity_knm_min": 8500.0,
+    "moment_capacity_knm_max": 12000.0,
+    "shear_capacity_kn_min": 3000.0,
+    "shear_capacity_kn_max": 4500.0,
+    "max_allowable_deflection_mm": 30.0,
+    "overall_safety_status": "PASS"
+  }
+}
