@@ -137,8 +137,8 @@ OsdagBridge-QA/
 
 ### 2. Clone the Repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/OsdagBridge-QA.git
-cd OsdagBridge-QA
+git clone https://github.com/singhrajawatamit7-star/OsdagBridge-Software-Testing.git
+cd OsdagBridge-Software-Testing
 ```
 
 ### 3. Create and Activate Virtual Environment
@@ -261,13 +261,13 @@ This repository is pre-configured for **one-click deployment** on [Streamlit Com
    git add .
    git commit -m "Initial commit: OsdagBridge QA Suite ready for deployment"
    git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/OsdagBridge-QA.git
+   git remote add origin https://github.com/singhrajawatamit7-star/OsdagBridge-Software-Testing.git
    git push -u origin main
    ```
 2. **Deploy on Streamlit Cloud:**
    - Log into [share.streamlit.io](https://share.streamlit.io/) with GitHub.
    - Click **New app**.
-   - Select your repository: `YOUR_USERNAME/OsdagBridge-QA`.
+   - Select your repository: `singhrajawatamit7-star/OsdagBridge-Software-Testing`.
    - Branch: `main`.
    - Main file path: `app.py`.
    - Click **Deploy!**

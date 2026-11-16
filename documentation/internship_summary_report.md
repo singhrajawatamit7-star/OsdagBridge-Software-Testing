@@ -4,7 +4,7 @@
 **Student / Intern:** Software Testing & QA Intern  
 **Organization:** Structural Engineering Open-Source QA Initiative  
 **Date of Submission:** November 2026  
-**Repository:** [OsdagBridge-Software-Testing](https://github.com/osdag-admin/OsdagBridge)  
+**Repository:** [OsdagBridge-Software-Testing](https://github.com/singhrajawatamit7-star/OsdagBridge-Software-Testing)  
 **Live Deployed Dashboard:** Streamlit Community Cloud Ready  
 
 ---
