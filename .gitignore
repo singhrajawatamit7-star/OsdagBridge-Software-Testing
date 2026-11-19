@@ -8,6 +8,7 @@ __pycache__/
 .coverage
 htmlcov/
 reports/test_report.html
+reports/test_results/*.html
 
 # Environments
 .venv/

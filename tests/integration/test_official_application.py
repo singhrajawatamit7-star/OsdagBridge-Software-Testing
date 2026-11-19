@@ -5,10 +5,25 @@ import os
 from pathlib import Path
 import sys
 
-DEFAULT_OFFICIAL_PATH = Path.home() / "Documents" / "OsdagQAWork" / "OsdagBridge"
-OFFICIAL_ROOT = Path(
-    os.environ.get("OSDAGBRIDGE_ROOT", str(DEFAULT_OFFICIAL_PATH))
-).resolve()
+# Candidate resolution for official OsdagBridge checkout:
+# 1. Environment variable OSDAGBRIDGE_ROOT
+# 2. Sibling directory relative to project root (e.g. scratch or OsdagQAWork)
+# 3. Documents/OsdagQAWork/OsdagBridge
+candidate_roots = []
+if "OSDAGBRIDGE_ROOT" in os.environ:
+    candidate_roots.append(Path(os.environ["OSDAGBRIDGE_ROOT"]).resolve())
+project_root = Path(__file__).resolve().parents[2]
+candidate_roots.append((project_root.parent / "OsdagBridge").resolve())
+candidate_roots.append((Path.home() / "Documents" / "OsdagQAWork" / "OsdagBridge").resolve())
+
+OFFICIAL_ROOT = candidate_roots[0]
+for cr in candidate_roots:
+    try:
+        if cr.is_dir():
+            OFFICIAL_ROOT = cr
+            break
+    except OSError:
+        continue
 
 
 def test_official_repository_exists():

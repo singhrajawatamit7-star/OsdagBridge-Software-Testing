@@ -61,7 +61,7 @@ def test_issues_csv_format_and_data(project_root):
 
 
 def test_documentation_files_exist(project_root):
-    """Verify all 6 formal documentation deliverables exist."""
+    """Verify all 10 formal documentation deliverables exist."""
     doc_dir = project_root / "documentation"
     assert (doc_dir / "installation_guide.md").exists()
     assert (doc_dir / "test_strategy.md").exists()
@@ -69,6 +69,10 @@ def test_documentation_files_exist(project_root):
     assert (doc_dir / "test_execution_report.md").exists()
     assert (doc_dir / "bug_report_guide.md").exists()
     assert (doc_dir / "internship_summary_report.md").exists()
+    assert (doc_dir / "test_environment.md").exists()
+    assert (doc_dir / "known_limitations.md").exists()
+    assert (doc_dir / "test_data_description.md").exists()
+    assert (doc_dir / "release_checklist.md").exists()
 
 
 def test_github_actions_workflow_exists(project_root):

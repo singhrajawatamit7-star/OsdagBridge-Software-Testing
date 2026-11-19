@@ -84,13 +84,17 @@ OsdagBridge-Software-Testing/
 ├── test_results.csv                   # 50 executed test results with execution timings
 ├── issues.csv                         # Defect tracker with reproduction steps & evidence
 │
-├── documentation/                     # Formal QA documentation deliverables
+├── documentation/                     # Formal QA documentation deliverables (10 deliverables)
 │   ├── installation_guide.md          # Official OsdagBridge & QA suite setup guide
 │   ├── test_strategy.md               # QA methodology, test levels, and techniques
 │   ├── test_plan.md                   # Master Software Test Plan (IEEE 829 compliant)
 │   ├── test_execution_report.md       # Full test execution report & metrics breakdown
 │   ├── bug_report_guide.md            # Defect reporting standards & lifecycle guide
-│   └── internship_summary_report.md   # Final QA Intern evaluation report
+│   ├── internship_summary_report.md   # Final QA Intern evaluation report
+│   ├── test_environment.md           # Test environment, toolchain & runner matrix
+│   ├── known_limitations.md           # Upstream defect catalog & architecture limits
+│   ├── test_data_description.md       # Test fixture catalogs & reference problems
+│   └── release_checklist.md           # 23-point QA release & evaluation gate
 │
 ├── tests/                             # Automated test suite (Pytest compatible)
 │   ├── conftest.py                    # Shared fixtures and official source resolution
@@ -210,10 +214,10 @@ Open browser at `http://localhost:8501`.
 ### Dashboard Features:
 1. **QA Executive Dashboard:** High-level KPIs, test execution pass rates, module distribution, and recent activity.
 2. **Test Case Repository:** Filterable test matrix by Category, Status, Execution Type, with full step-by-step inspector for all 50 test cases.
-3. **Defect Tracker & Bug Register:** Complete bug log with reproduction steps, severity filters, evidence images, and an interactive "Report Defect" form.
-4. **Automated Test Runner:** Trigger regression tests directly from the web interface with simulated terminal logs.
-5. **Interactive Bridge Verification Engine:** Change span, girder dimensions, and steel grades in real time, run live IRC:24 calculations, and export Markdown / HTML reports.
-6. **Documentation & Deliverables Center:** Embedded IEEE 829 Test Plan, Test Strategy, Installation Guide, and one-click CSV downloaders.
+3. **Defect Tracker & Bug Register:** Complete defect registry with reproduction steps, severity filters, evidence images, and an interactive "Report Defect" form that directly appends and persists new issues to `issues.csv`.
+4. **Automated Test Runner:** Trigger live Pytest execution across integration, unit, GUI, and regression suites directly from the web interface with real-time subprocess execution, stdout/stderr telemetry, and duration benchmarks.
+5. **Interactive Bridge Verification Engine:** Live structural engineering calculation engine powered by `osdagbridge_core` (independent QA reference benchmark) with real-time validation, IRC:24 code checks, and downloadable Markdown/HTML calculation reports.
+6. **Documentation & Deliverables Center:** Embedded full-text viewer for all 10 QA deliverables (Test Plan, Strategy, Environment, Limitations, Checklist) and one-click CSV downloaders.
 
 ---
 
@@ -290,7 +294,7 @@ The included CI workflow (`.github/workflows/qa.yml`) automatically executes on 
 - [x] **6. Real Test Execution Reports:** 50 execution records with timings in `test_results.csv`.
 - [x] **7. Continuous Integration Pipeline:** GitHub Actions workflow in `.github/workflows/qa.yml`.
 - [x] **8. Streamlit QA Dashboard:** Feature-complete Streamlit web app reading real data in `app.py`.
-- [x] **9. Complete Testing Documentation:** 6 comprehensive guides under `documentation/`.
+- [x] **9. Complete Testing Documentation:** 10 comprehensive guides and specifications under `documentation/`.
 - [x] **10. Verified README & Demonstration:** Fully documented and deployment-ready project.
 
 ---

@@ -15,11 +15,22 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 # Official OsdagBridge source directory resolution
-DEFAULT_OFFICIAL_SRC = Path.home() / "Documents" / "OsdagQAWork" / "OsdagBridge" / "src"
-OFFICIAL_SRC = Path(os.environ.get("OSDAGBRIDGE_SRC", str(DEFAULT_OFFICIAL_SRC))).resolve()
+candidate_paths = []
+if "OSDAGBRIDGE_SRC" in os.environ:
+    candidate_paths.append(Path(os.environ["OSDAGBRIDGE_SRC"]).resolve())
+candidate_paths.append(ROOT_DIR.parent / "OsdagBridge" / "src")
+candidate_paths.append(Path.home() / "Documents" / "OsdagQAWork" / "OsdagBridge" / "src")
 
-if OFFICIAL_SRC.is_dir() and str(OFFICIAL_SRC) not in sys.path:
-    sys.path.insert(0, str(OFFICIAL_SRC))
+OFFICIAL_SRC = candidate_paths[0]
+for p in candidate_paths:
+    try:
+        if p.is_dir():
+            OFFICIAL_SRC = p
+            if str(p) not in sys.path:
+                sys.path.insert(0, str(p))
+            break
+    except OSError:
+        continue
 
 # Upstream OsdagBridge bug guard (OB-BUG-008):
 # Official src/osdagbridge/core/__init__.py has 'from .models import *'
