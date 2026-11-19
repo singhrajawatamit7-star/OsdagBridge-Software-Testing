@@ -38,7 +38,7 @@ for p in candidate_paths:
 # We supply a module shim so submodules can be discovered and tested cleanly.
 import types
 if "osdagbridge.core.models" not in sys.modules:
-    sys.modules["osdagbridge.core.models"] = types.ModuleType("osdagbridge.core.models")
+#    sys.modules["osdagbridge.core.models"] = types.ModuleType("osdagbridge.core.models")
 
 
 @pytest.fixture(scope="session")
