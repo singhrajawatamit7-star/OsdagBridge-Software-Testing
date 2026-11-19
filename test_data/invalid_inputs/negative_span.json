@@ -1,0 +1,19 @@
+{
+  "test_case": "NEG_SPAN_VAL",
+  "field": "geometry.span_length",
+  "invalid_value": -24.0,
+  "expected_error": "ERR_NEGATIVE_OR_ZERO_INPUT",
+  "payload": {
+    "project_id": "ERR-SPAN",
+    "project_name": "Negative Span Error Case",
+    "bridge_type": "Plate_Girder_Bridge",
+    "steel_grade": "E250",
+    "concrete_grade": "M30",
+    "vehicle_loading": "IRC_Class_70R_Tracked",
+    "geometry": {
+      "span_length": -24.0,
+      "carriageway_width": 7.5,
+      "number_of_main_girders": 3
+    }
+  }
+}

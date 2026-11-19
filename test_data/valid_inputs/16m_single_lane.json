@@ -1,0 +1,29 @@
+{
+  "project_id": "OB-PG-16M",
+  "project_name": "Single Lane Rural Plate Girder Bridge (16m)",
+  "location": "State Highway 12, Km 42",
+  "engineer_name": "QA Engineering Intern",
+  "bridge_type": "Plate_Girder_Bridge",
+  "steel_grade": "E250",
+  "concrete_grade": "M30",
+  "vehicle_loading": "IRC_Class_A",
+  "geometry": {
+    "span_length": 16.0,
+    "carriageway_width": 4.25,
+    "footpath_width_left": 1.0,
+    "footpath_width_right": 1.0,
+    "number_of_main_girders": 2,
+    "girder_spacing": 2.5,
+    "cross_girder_spacing": 4.0,
+    "deck_slab_thickness": 200.0,
+    "wearing_coat_thickness": 60.0
+  },
+  "girder_dimensions": {
+    "web_depth": 1400.0,
+    "web_thickness": 12.0,
+    "flange_width": 400.0,
+    "flange_thickness": 28.0,
+    "stiffener_spacing": 1500.0,
+    "stiffener_thickness": 10.0
+  }
+}

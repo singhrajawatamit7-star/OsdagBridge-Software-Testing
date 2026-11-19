@@ -1,0 +1,29 @@
+{
+  "project_id": "OB-PG-24M",
+  "project_name": "Two-Lane Highway Plate Girder Bridge (24m)",
+  "location": "Pune-Mumbai Expressway, Sector 4",
+  "engineer_name": "Arun Sharma, Structural QA Engineer",
+  "bridge_type": "Plate_Girder_Bridge",
+  "steel_grade": "E250",
+  "concrete_grade": "M35",
+  "vehicle_loading": "IRC_Class_70R_Tracked",
+  "geometry": {
+    "span_length": 24.0,
+    "carriageway_width": 7.5,
+    "footpath_width_left": 1.2,
+    "footpath_width_right": 1.2,
+    "number_of_main_girders": 3,
+    "girder_spacing": 2.8,
+    "cross_girder_spacing": 4.0,
+    "deck_slab_thickness": 220.0,
+    "wearing_coat_thickness": 75.0
+  },
+  "girder_dimensions": {
+    "web_depth": 1800.0,
+    "web_thickness": 14.0,
+    "flange_width": 500.0,
+    "flange_thickness": 36.0,
+    "stiffener_spacing": 1500.0,
+    "stiffener_thickness": 12.0
+  }
+}

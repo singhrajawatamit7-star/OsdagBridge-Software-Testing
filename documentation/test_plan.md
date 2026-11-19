@@ -1,7 +1,7 @@
 # MASTER SOFTWARE TEST PLAN (IEEE 829 COMPLIANT)
 ## Project: OsdagBridge – Automated & Manual QA Suite
 **Document Reference:** OB-QA-STP-001  
-**Version:** 1.0.0  
+**Version:** 2.0.0  
 **Author:** QA Engineering Intern  
 **Date:** November 2026  
 **Status:** Approved / Deployment Ready  
@@ -9,12 +9,12 @@
 ---
 
 ### 1.0 Introduction & Objectives
-OsdagBridge is an open-source Python-based bridge analysis and design software package developed under the Osdag initiative (IIT Bombay). The software specializes in Plate Girder Bridge systems, implementing structural design procedures compliant with Indian Standards (IS 800:2007) and Indian Roads Congress bridge specifications (IRC:6, IRC:24).
+OsdagBridge is an open-source Python-based bridge analysis and design software package developed under the Osdag initiative (IIT Bombay). The software specializes in Plate Girder Bridge systems, implementing structural design procedures compliant with Indian Standards (**IS 800:2007**) and Indian Roads Congress bridge specifications (**IRC:6**, **IRC:24**).
 
 The primary objective of this Software Testing and Quality Assurance project is to:
-1. Validate system stability, input validation resilience, and mathematical calculation accuracy.
-2. Establish a comprehensive test suite combining Manual Testing and Pytest-based Automated Testing.
-3. Detect, isolate, and professionally document software defects with clear reproduction steps and severity ratings.
+1. Verify the official OsdagBridge application source (`osdag-admin/OsdagBridge`), its modules, DTO structures, and execution pipelines.
+2. Establish a comprehensive suite of **50 documented test cases** combining Pytest automated testing and workflow verifications.
+3. Detect, isolate, and professionally document software defects with clear reproduction steps, severity, and priority ratings in `issues.csv`.
 4. Provide a continuous verification pipeline and interactive Streamlit QA Dashboard ready for deployment.
 
 ---
@@ -22,35 +22,33 @@ The primary objective of this Software Testing and Quality Assurance project is 
 ### 2.0 Scope of Testing
 
 #### 2.1 In-Scope
+- **Official Package Structure & Discovery:** Verification of `osdagbridge`, `osdagbridge.core`, and submodules (`bridge_types`, `bridge_components`, `loads`, `solvers`, `reports`, `cli`, `desktop`).
 - **Input Validation & Boundary Testing:** Verification of numeric boundaries (span length, carriageway width, web depth, thickness, girder spacing) and edge cases (negative values, zero division, non-numeric strings).
-- **Structural Design Engine:** Verification of dead load distribution, IRC Class 70R & Class A live load bending moments, section modulus ($Z_e, Z_p$), moment capacity ($M_d$), shear capacity ($V_d$), and live load deflection limits ($\delta \le L/800$).
+- **Structural Design Engine:** Verification of dead load distribution, IRC Class 70R & Class A live load bending moments, section modulus ($Z_e, Z_p$), moment capacity ($M_d$), shear capacity ($V_d$), and live load deflection limits ($\delta_{LL} \le L/800$).
 - **Project Lifecycle:** Creation, serialization to JSON, file integrity, corrupted file handling, and recalculation on modification.
 - **Reporting & Export:** Generation of Markdown, HTML, and CSV calculation sheets containing clause references and pass/fail criteria.
-- **User Interface & Visual Feedback:** Layout integrity, error alert banners, and 3D CAD visualization state.
+- **GUI & Desktop Workflows:** Bootstrap launch points, CLI options, and UI error states.
 
 #### 2.2 Out-of-Scope
-- Non-plate-girder bridge types (e.g. cable-stayed, suspension, arch bridges not currently supported by OsdagBridge).
-- Modification of core third-party C/C++ finite element solvers.
-- Commercial stress testing of server infrastructure (OsdagBridge is a desktop and client-side design package).
+- Non-plate-girder bridge types (e.g. cable-stayed, suspension, arch bridges not currently supported).
+- Third-party C/C++ finite element binary solvers (OpenSees binaries).
+- Stress testing of multi-tenant server infrastructure (desktop/client-side focus).
 
 ---
 
-### 3.0 Test Strategy & Methodology
+### 3.0 Test Case Target Breakdown (50 Cases)
 
-The testing strategy follows a multi-tier V-Model and Agile QA methodology:
-
-```
-[ Requirements / IRC Specs ] <-------------> [ Acceptance / System QA Dashboard ]
-       \                                                /
-  [ Design / Geometry Models ] <------------> [ Integration / Workflow Tests ]
-         \                                          /
-    [ Modules / Solvers ] <--------------> [ Unit / Pytest Automated Tests ]
-```
-
-1. **Equivalence Partitioning & Boundary Value Analysis (BVA):** Applied to span lengths ($5.0\text{m} \le L \le 60.0\text{m}$) and web thicknesses ($t_w \ge 8.0\text{mm}$).
-2. **Negative & Error Guessing Testing:** Ingestion of malicious, blank, and corrupt payloads to verify that the application handles errors gracefully without crashing.
-3. **Reference Calculation Cross-Validation:** Comparing automated test output against published worked examples in IRC:24-2010.
-4. **Continuous Integration (CI):** Running tests on every commit via GitHub Actions across Python 3.11, 3.12, and 3.13.
+| Category | Cases | Primary Focus |
+| :--- | :---: | :--- |
+| **1. Installation and Launch** | 5 | Python compatibility, editable pip install, module discovery, CLI launcher, desktop bootstrap |
+| **2. Project Creation & Management** | 5 | DTO instantiation, parameter modification, JSON serialization/deserialization, corrupted file handling |
+| **3. Input Validation** | 10 | Valid spans, empty fields, negative inputs, boundaries [5m-60m], corrosion thickness [8mm], alpha strings |
+| **4. Bridge Design Execution** | 8 | Preliminary sizing, analyser, designer, dead load, live load Class 70R, moment capacity, shear capacity |
+| **5. Results and Visualization** | 7 | Deflection check ($L/800$), extreme span failure, E250 vs E350 yield scaling, 3D CAD canvas, summary cards |
+| **6. Report Generation** | 5 | Markdown calculations, printable HTML, compliance table, CSV export, Unicode directory writing |
+| **7. Error Handling** | 5 | Missing girder block, single girder error, slenderness warning ($d/t_w > 200$), corrupted input handling |
+| **8. Regression Testing** | 5 | Fast typing alpha injection (OB-BUG-005), zero web thickness (OB-BUG-004), Unicode export (OB-BUG-006), impact factor (OB-BUG-007) |
+| **Total** | **50** | Full QA verification matrix |
 
 ---
 
@@ -60,7 +58,7 @@ The testing strategy follows a multi-tier V-Model and Agile QA methodology:
 | :--- | :--- |
 | **Pass** | Feature functions exactly per specification; all checks pass; zero unhandled exceptions; output matches reference within 1.0% tolerance. |
 | **Fail** | Calculation exceeds tolerance; invalid input accepted without error; crash or unhandled exception encountered. |
-| **Blocked** | Precondition failed or prerequisite module crashed, preventing further testing. |
+| **Blocked / Skipped** | Precondition failed or external dependency unavailable, preventing test execution. |
 
 ---
 
@@ -77,7 +75,8 @@ The testing strategy follows a multi-tier V-Model and Agile QA methodology:
 
 ### 6.0 Environmental Setup
 - **Operating Systems:** Windows 11 / Windows 10 / Ubuntu Linux
-- **Python Version:** 3.11+
-- **Test Framework:** Pytest >= 8.0, Pytest-cov, Pytest-html
+- **Python Version:** 3.9+ (Python 3.11+ recommended)
+- **Official Package:** `osdagbridge` 0.1.0 (cloned from `github.com/osdag-admin/OsdagBridge`)
+- **Testing Framework:** Pytest >= 8.0, Pytest-cov, Pytest-html
 - **Presentation Layer:** Streamlit >= 1.38, Pandas >= 2.0
 - **CI/CD:** GitHub Actions Matrix Runner

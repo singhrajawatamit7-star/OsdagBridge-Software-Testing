@@ -1,0 +1,23 @@
+{
+  "test_case": "ALPHA_IN_NUMERIC",
+  "field": "girder_dimensions.web_depth",
+  "invalid_value": "ABC_INVALID_DEPTH",
+  "expected_error": "ERR_INVALID_DATA_TYPE",
+  "payload": {
+    "project_id": "ERR-TYPE",
+    "project_name": "Invalid Types Error Case",
+    "bridge_type": "Plate_Girder_Bridge",
+    "steel_grade": "E250",
+    "concrete_grade": "M30",
+    "vehicle_loading": "IRC_Class_70R_Tracked",
+    "geometry": {
+      "span_length": 24.0,
+      "carriageway_width": 7.5,
+      "number_of_main_girders": 3
+    },
+    "girder_dimensions": {
+      "web_depth": "ABC_INVALID_DEPTH",
+      "web_thickness": 14.0
+    }
+  }
+}

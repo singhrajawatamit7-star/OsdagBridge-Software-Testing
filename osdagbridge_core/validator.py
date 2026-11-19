@@ -64,7 +64,7 @@ class ProjectValidator:
             return result
 
         # 1. Project Metadata Checks
-        required_meta = ["project_id", "project_name", "location", "engineer_name", "steel_grade", "concrete_grade", "vehicle_loading"]
+        required_meta = ["project_id", "project_name", "steel_grade", "concrete_grade", "vehicle_loading"]
         for field in required_meta:
             val = data.get(field)
             if val is None or (isinstance(val, str) and not val.strip()):

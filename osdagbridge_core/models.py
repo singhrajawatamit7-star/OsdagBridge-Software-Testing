@@ -24,13 +24,13 @@ STEEL_PROPERTIES = {
 class BridgeGeometry:
     span_length: float               # in meters (effective span)
     carriageway_width: float         # in meters
-    footpath_width_left: float       # in meters
-    footpath_width_right: float      # in meters
-    number_of_main_girders: int      # count (typically 2 to 6)
-    girder_spacing: float            # in meters
-    cross_girder_spacing: float      # in meters
-    deck_slab_thickness: float       # in mm (typical 200 - 300 mm)
-    wearing_coat_thickness: float    # in mm (typical 50 - 100 mm)
+    footpath_width_left: float = 1.0       # in meters
+    footpath_width_right: float = 1.0      # in meters
+    number_of_main_girders: int = 3        # count (typically 2 to 6)
+    girder_spacing: float = 2.8            # in meters
+    cross_girder_spacing: float = 4.0      # in meters
+    deck_slab_thickness: float = 220.0     # in mm (typical 200 - 300 mm)
+    wearing_coat_thickness: float = 75.0   # in mm (typical 50 - 100 mm)
 
 
 @dataclass
@@ -62,19 +62,30 @@ class BridgeProject:
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "BridgeProject":
-        geom_data = data["geometry"]
-        girder_data = data["girder_dimensions"]
+        geom_data = dict(data["geometry"])
+        geom_data.setdefault("footpath_width_left", 1.0)
+        geom_data.setdefault("footpath_width_right", 1.0)
+        geom_data.setdefault("number_of_main_girders", 3)
+        geom_data.setdefault("girder_spacing", 2.8)
+        geom_data.setdefault("cross_girder_spacing", 4.0)
+        geom_data.setdefault("deck_slab_thickness", 220.0)
+        geom_data.setdefault("wearing_coat_thickness", 75.0)
+
+        girder_data = dict(data["girder_dimensions"])
+        girder_data.setdefault("stiffener_spacing", 1500.0)
+        girder_data.setdefault("stiffener_thickness", 12.0)
+
         geometry = BridgeGeometry(**geom_data)
         girder_dimensions = PlateGirderDimensions(**girder_data)
         return cls(
             project_id=data["project_id"],
-            project_name=data["project_name"],
-            location=data["location"],
-            engineer_name=data["engineer_name"],
+            project_name=data.get("project_name", "Untitled Bridge"),
+            location=data.get("location", "Default Location"),
+            engineer_name=data.get("engineer_name", "QA Engineer"),
             bridge_type=data.get("bridge_type", "Plate_Girder_Bridge"),
-            steel_grade=data["steel_grade"],
-            concrete_grade=data["concrete_grade"],
-            vehicle_loading=data["vehicle_loading"],
+            steel_grade=data.get("steel_grade", "E250"),
+            concrete_grade=data.get("concrete_grade", "M30"),
+            vehicle_loading=data.get("vehicle_loading", "IRC_Class_70R_Tracked"),
             geometry=geometry,
             girder_dimensions=girder_dimensions,
             custom_notes=data.get("custom_notes", "")

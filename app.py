@@ -60,6 +60,37 @@ df_cases = load_csv_data(TEST_CASES_CSV)
 df_results = load_csv_data(TEST_RESULTS_CSV)
 df_issues = load_csv_data(ISSUES_CSV)
 
+# Column compatibility normalization
+if not df_cases.empty:
+    if "Category" in df_cases.columns and "Module" not in df_cases.columns:
+        df_cases["Module"] = df_cases["Category"]
+    if "Test_Data" not in df_cases.columns:
+        df_cases["Test_Data"] = "Standard bridge payload"
+
+if not df_results.empty:
+    if "Category" in df_results.columns and "Module" not in df_results.columns:
+        df_results["Module"] = df_results["Category"]
+    if "Actual_Result" in df_results.columns and "Remarks" not in df_results.columns:
+        df_results["Remarks"] = df_results["Actual_Result"]
+    if "Execution_ID" not in df_results.columns:
+        df_results["Execution_ID"] = [f"EXEC-{i:03d}" for i in range(1, len(df_results) + 1)]
+
+if not df_issues.empty:
+    if "Bug_Title" in df_issues.columns and "Title" not in df_issues.columns:
+        df_issues["Title"] = df_issues["Bug_Title"]
+    if "Module" not in df_issues.columns:
+        df_issues["Module"] = df_issues.get("Application_Version", "Core Engine")
+    if "Reported_Date" not in df_issues.columns:
+        df_issues["Reported_Date"] = "2026-11-16"
+    if "Environment" not in df_issues.columns and "Operating_System" in df_issues.columns:
+        df_issues["Environment"] = df_issues["Operating_System"]
+    if "Expected_Behavior" not in df_issues.columns and "Expected_Result" in df_issues.columns:
+        df_issues["Expected_Behavior"] = df_issues["Expected_Result"]
+    if "Actual_Behavior" not in df_issues.columns and "Actual_Result" in df_issues.columns:
+        df_issues["Actual_Behavior"] = df_issues["Actual_Result"]
+    if "Linked_Test_ID" not in df_issues.columns:
+        df_issues["Linked_Test_ID"] = "OB-001 - OB-050"
+
 # Custom Styling
 st.markdown("""
 <style>

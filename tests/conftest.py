@@ -1,35 +1,73 @@
 """
-Pytest configuration and shared test fixtures for OsdagBridge QA suite.
+Pytest configuration and shared test fixtures for OsdagBridge QA Suite.
+Supports testing both official OsdagBridge modules and QA verification utilities.
 """
 
 import os
 import sys
 import json
 from pathlib import Path
+import pytest
 
-# Safe pytest import with fallback
-try:
-    import pytest
-except ImportError:
-    class _PytestShim:
-        @staticmethod
-        def fixture(*args, **kwargs):
-            def decorator(func):
-                return func
-            return decorator
-    pytest = _PytestShim()
-
-# Ensure root directory and osdagbridge_core are discoverable
+# Project root directory
 ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
-from osdagbridge_core.models import BridgeProject
+# Official OsdagBridge source directory resolution
+DEFAULT_OFFICIAL_SRC = Path.home() / "Documents" / "OsdagQAWork" / "OsdagBridge" / "src"
+OFFICIAL_SRC = Path(os.environ.get("OSDAGBRIDGE_SRC", str(DEFAULT_OFFICIAL_SRC))).resolve()
+
+if OFFICIAL_SRC.is_dir() and str(OFFICIAL_SRC) not in sys.path:
+    sys.path.insert(0, str(OFFICIAL_SRC))
+
+# Upstream OsdagBridge bug guard (OB-BUG-008):
+# Official src/osdagbridge/core/__init__.py has 'from .models import *'
+# but models.py is omitted from the official repository source tree.
+# We supply a module shim so submodules can be discovered and tested cleanly.
+import types
+if "osdagbridge.core.models" not in sys.modules:
+    sys.modules["osdagbridge.core.models"] = types.ModuleType("osdagbridge.core.models")
 
 
 @pytest.fixture(scope="session")
 def project_root() -> Path:
     return ROOT_DIR
+
+
+@pytest.fixture(scope="session")
+def official_source_root() -> Path:
+    return OFFICIAL_SRC
+
+
+@pytest.fixture(scope="session")
+def sample_24m_path(project_root) -> Path:
+    return project_root / "test_data" / "valid_inputs" / "24m_plate_girder.json"
+
+
+@pytest.fixture(scope="session")
+def sample_16m_path(project_root) -> Path:
+    return project_root / "test_data" / "valid_inputs" / "16m_single_lane.json"
+
+
+@pytest.fixture(scope="session")
+def sample_invalid_span_path(project_root) -> Path:
+    return project_root / "test_data" / "invalid_inputs" / "negative_span.json"
+
+
+@pytest.fixture
+def sample_24m_data(sample_24m_path) -> dict:
+    with open(sample_24m_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+@pytest.fixture
+def sample_16m_data(sample_16m_path) -> dict:
+    with open(sample_16m_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+from osdagbridge_core.models import BridgeProject
 
 
 @pytest.fixture(scope="session")
@@ -61,11 +99,20 @@ def valid_bridge_project(valid_project_dict) -> BridgeProject:
 @pytest.fixture
 def invalid_test_cases(invalid_project_json_path) -> list:
     with open(invalid_project_json_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-        return data.get("test_cases", [])
+        return json.load(f).get("test_cases", [])
 
 
 @pytest.fixture
 def reference_irc_data(reference_design_json_path) -> dict:
     with open(reference_design_json_path, "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+@pytest.fixture
+def official_plate_girder_dto():
+    """Returns an instance of the official PlateGirderDTO if available."""
+    try:
+        from osdagbridge.core.bridge_types.plate_girder.dto import PlateGirderDTO
+        return PlateGirderDTO(name="NH48_PlateGirder_24m")
+    except ImportError:
+        pytest.skip("Official osdagbridge package not found in Python environment.")
