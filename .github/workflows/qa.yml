@@ -1,73 +1,71 @@
-name: OsdagBridge QA Automated Testing CI
+name: OsdagBridge QA CI
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
+  workflow_dispatch:
 
 jobs:
   qa-suite:
-    name: Pytest CI on ${{ matrix.os }} (Python ${{ matrix.python-version }})
+    name: QA on ${{ matrix.os }} / Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, windows-latest ]
-        python-version: [ "3.11", "3.12" ]
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.11", "3.12"]
 
     steps:
-      - name: Checkout QA Testing Repository
+      - name: Checkout QA repository
         uses: actions/checkout@v4
         with:
           path: OsdagBridge-Software-Testing
 
-      - name: Checkout Official OsdagBridge Application
+      - name: Checkout official OsdagBridge
         uses: actions/checkout@v4
         with:
           repository: osdag-admin/OsdagBridge
           path: OsdagBridge
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'pip'
 
-      - name: Install Official OsdagBridge Application
+      - name: Install official application
         working-directory: OsdagBridge
         run: |
           python -m pip install --upgrade pip
-          pip install -e .
+          python -m pip install -e .
 
-      - name: Install QA Suite Dependencies
+      - name: Install QA dependencies
         working-directory: OsdagBridge-Software-Testing
         run: |
-          pip install -r requirements.txt
+          python -m pip install -r requirements.txt
 
-      - name: Run Full QA Pytest Suite
+      - name: Verify official checkout
         working-directory: OsdagBridge-Software-Testing
         env:
           OSDAGBRIDGE_ROOT: ${{ github.workspace }}/OsdagBridge
           OSDAGBRIDGE_SRC: ${{ github.workspace }}/OsdagBridge/src
         run: |
-          python run_tests.py
+          python -c "import os; from pathlib import Path; p=Path(os.environ['OSDAGBRIDGE_ROOT']); assert (p/'src'/'osdagbridge').is_dir()"
 
-      - name: Generate Code Coverage and HTML Test Report
+      - name: Run QA tests
         working-directory: OsdagBridge-Software-Testing
-        if: always()
         env:
           OSDAGBRIDGE_ROOT: ${{ github.workspace }}/OsdagBridge
           OSDAGBRIDGE_SRC: ${{ github.workspace }}/OsdagBridge/src
         run: |
-          python -m pytest --html=reports/test_results/test_report.html --self-contained-html || true
+          python -m pytest tests -v --tb=short --junitxml=reports/test_results/junit.xml --html=reports/test_results/test_report.html --self-contained-html
 
-      - name: Upload QA Test Artifacts
+      - name: Upload QA artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: qa-artifacts-${{ matrix.os }}-py${{ matrix.python-version }}
           path: |
             OsdagBridge-Software-Testing/reports/
-            OsdagBridge-Software-Testing/test_results.csv
-            OsdagBridge-Software-Testing/issues.csv
+          if-no-files-found: warn

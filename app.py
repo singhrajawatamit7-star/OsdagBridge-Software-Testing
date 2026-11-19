@@ -181,28 +181,40 @@ if nav == "📊 QA Executive Dashboard":
     </div>
     """, unsafe_allow_html=True)
 
-    # Key KPI Metrics Cards
-    total_cases = len(df_cases) if not df_cases.empty else 50
-    passed_cases = len(df_results[df_results["Status"] == "PASS"]) if not df_results.empty else 50
-    failed_cases = len(df_results[df_results["Status"] == "FAIL"]) if not df_results.empty else 0
-    total_executions = len(df_results) if not df_results.empty else 50
-    pass_rate = (passed_cases / total_executions * 100.0) if total_executions > 0 else 100.0
-    total_bugs = len(df_issues) if not df_issues.empty else 7
-    total_automated_tests = 71
+    # Key KPI Metrics Cards (calculated directly from actual execution results)
+    total_cases = len(df_cases)
+    if df_results.empty:
+        passed_cases = 0
+        failed_cases = 0
+        error_cases = 0
+        skipped_cases = 0
+        total_executed = 0
+        pass_rate = 0.0
+    else:
+        passed_cases = int((df_results["Status"] == "PASS").sum())
+        failed_cases = int((df_results["Status"] == "FAIL").sum())
+        error_cases = int((df_results["Status"] == "ERROR").sum())
+        skipped_cases = int((df_results["Status"] == "SKIPPED").sum())
+        total_executed = len(df_results)
+        pass_rate = (passed_cases / total_executed * 100.0) if total_executed else 0.0
+    total_bugs = len(df_issues)
+    total_automated_tests = 69
 
-    c1, c2, c3, c4, c5, c6 = st.columns(6)
+    c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
     with c1:
-        st.metric("Test Scenarios", f"{total_cases}")
+        st.metric("Test Scenarios", total_cases)
     with c2:
-        st.metric("Automated Pytest", f"{total_automated_tests} ⚡")
+        st.metric("Automated Pytests", total_automated_tests)
     with c3:
-        st.metric("Tests Passed", f"{passed_cases} ✅")
+        st.metric("Executed Tests", total_executed)
     with c4:
-        st.metric("Pass Rate", f"{pass_rate:.1f}%")
+        st.metric("Passed", f"{passed_cases} ✅")
     with c5:
-        st.metric("Tracked Defects", f"{total_bugs} 🐞")
+        st.metric("Failed/Errors", f"{failed_cases + error_cases} ❌")
     with c6:
-        st.metric("CI Pipeline", "Passing ✅")
+        st.metric("Skipped", f"{skipped_cases} ⚠️")
+    with c7:
+        st.metric("Pass Rate", f"{pass_rate:.1f}%")
 
     st.markdown("---")
 
@@ -456,10 +468,10 @@ elif nav == "⚡ Automated Test Runner":
         test_scope = st.selectbox(
             "Select Test Suite to Execute",
             [
-                "🚀 Full Test Suite (71 Tests across all suites)",
+                "🚀 Full Test Suite (69 Tests across all suites)",
                 "🔗 Official Application Integration (tests/integration)",
                 "🧪 Unit Validation & Boundaries (tests/unit)",
-                "🖥️ GUI & Desktop Workflow (tests/gui)",
+                "🎭 UI State Simulation (tests/ui_simulation)",
                 "🛡️ Regression Suite for Reported Bugs (tests/regression)",
                 "📐 Structural Design & IRC:24 Solvers (tests/test_design.py)",
                 "📋 Deliverables & Repository Integrity (tests/test_repository_layout.py)"
@@ -477,8 +489,8 @@ elif nav == "⚡ Automated Test Runner":
         target_args = ["tests/integration"]
     elif "Unit Validation" in test_scope:
         target_args = ["tests/unit"]
-    elif "GUI & Desktop" in test_scope:
-        target_args = ["tests/gui"]
+    elif "UI State Simulation" in test_scope:
+        target_args = ["tests/ui_simulation"]
     elif "Regression Suite" in test_scope:
         target_args = ["tests/regression"]
     elif "Structural Design" in test_scope:

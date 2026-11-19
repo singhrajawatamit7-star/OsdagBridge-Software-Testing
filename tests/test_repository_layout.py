@@ -13,7 +13,7 @@ def test_test_cases_csv_exists_and_populated(project_root):
     csv_file = project_root / "test_cases.csv"
     assert csv_file.exists(), "test_cases.csv missing in project root."
 
-    with open(csv_file, "r", encoding="utf-8") as f:
+    with open(csv_file, "r", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         rows = list(reader)
 
@@ -37,7 +37,7 @@ def test_test_results_csv_exists_and_complete(project_root):
         rows = list(reader)
 
     assert len(rows) >= 50, f"Expected 50 execution entries, found {len(rows)}"
-    valid_statuses = {"PASS", "FAIL", "SKIPPED", "BLOCKED"}
+    valid_statuses = {"PASS", "FAIL", "SKIPPED", "BLOCKED", "ERROR"}
     for row in rows:
         assert row["Status"] in valid_statuses, f"Invalid status: {row['Status']}"
 
